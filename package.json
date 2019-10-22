@@ -1,0 +1,23 @@
+{
+  "name": "whoami",
+  "version": "1.0.0",
+  "description": "Boot Camp - Week 13 - Homework - Express",
+  "main": "apiRoutes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kelliott14/WhoAmI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kelliott14/WhoAmI/issues"
+  },
+  "homepage": "https://github.com/kelliott14/WhoAmI#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
