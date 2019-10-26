@@ -32,3 +32,4 @@ app.post("/api/friends", function (req, res){
     res.json(newFriend);
 });
 
+module.exports = friends;
