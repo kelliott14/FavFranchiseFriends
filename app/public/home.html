@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>The FFF</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" type="text/css" href="/public/assets/style.css"> -->
+    
 </head>
 <body>
     <div class="jumbotron jumbotron-fluid">
@@ -37,7 +37,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 
-<!-- <script type="text/javascript" src ="http://localhost:3030/script"></script> -->
 
 <script type="text/javascript">
     var questions = [
@@ -99,7 +98,7 @@
 
     var div;
     var card;
-    var img;
+    var opt;
 
 
     questions.forEach(function(item){
@@ -109,12 +108,9 @@
         
         item.forEach(function(innerItem){
             var score = item.indexOf(innerItem) + 1;
-            //card = $("<div class='card'></select>")
-            // img = $("<img class='card-img-top img-thumbnail' src = " + innerItem.img + " >");
-            img = $("<option>" + innerItem.name + "</option>")
-            $(img).attr("value", score)
-            // $(img).attr("name", score)
-            $(div).append(img);
+            opt = $("<option>" + innerItem.name + "</option>")
+            $(opt).attr("value", score)
+            $(div).append(opt);
             $(div).append(card);
         })
         

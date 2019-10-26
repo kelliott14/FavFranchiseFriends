@@ -8,14 +8,7 @@ friends = [
     "score": [
     "5",
     "1",
-    "4",
-    "4",
-    "5",
-    "1",
-    "2",
-    "5",
-    "4",
-    "1"
+    "4"
     ]
     },
     {
@@ -24,14 +17,7 @@ friends = [
     "score": [
     "4",
     "2",
-    "5",
-    "1",
-    "3",
-    "2",
-    "2",
-    "1",
-    "3",
-    "2"
+    "5"
     ]
     },
     {
@@ -40,30 +26,16 @@ friends = [
     "score": [
     "5",
     "2",
-    "2",
-    "2",
-    "4",
-    "1",
-    "3",
-    "2",
-    "5",
-    "5"
+    "2"
     ]
     },
     {
     "name": "Louis T. Delia",
     "photo": "https://pbs.twimg.com/profile_images/639214960049000449/lNCRC-ub.jpg",
     "score": [
-    "3",
-    "3",
-    "4",
-    "2",
-    "2",
-    "1",
-    "3",
-    "2",
-    "2",
-    "3"
+        "1",
+        "4",
+        "4"
     ]
     },
     {
@@ -72,13 +44,6 @@ friends = [
     "score": [
     "4",
     "3",
-    "4",
-    "1",
-    "5",
-    "2",
-    "5",
-    "3",
-    "1",
     "4"
     ]
     },
@@ -88,14 +53,7 @@ friends = [
     "score": [
         "1",
         "4",
-        "4",
-        "4",
-        "4",
-        "5",
-        "4",
-        "1",
-        "3",
-        "3"
+        "5"
     ]
     },
     {
@@ -104,40 +62,11 @@ friends = [
     "score": [
     "1",
     "4",
-    "4",
-    "4",
-    "4",
-    "5",
-    "4",
-    "1",
-    "3",
-    "3"
+    "4"
     ]
     }
     ]
 
-var newFriend = friends.pop()
-var totalDiff = 0;
-var bestFriendScore = 99;
-var bestFriend = []
-
-friends.forEach(function(item){
-    for (var i = 0; i < 2; i++){
-        
-        totalDiff = 0;
-        totalDiff += parseInt(item.score[i]) - parseInt(newFriend.score[i])
-        i++
-    }
-    
-    if (bestFriendScore > totalDiff){
-        bestFriend = [];
-        bestFriend.push(item)
-        bestFriendScore = totalDiff
-
-    }
-
-});
-
-console.log(bestFriend)
 
 
+module.exports = friends
