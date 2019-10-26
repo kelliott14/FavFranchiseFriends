@@ -41,7 +41,7 @@
             
             <div class="movieQuestions"></div>
            
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary disabled submit">Submit</button>
         </form>
     </div>
 </body>
@@ -257,23 +257,28 @@
     $(".scores").change(function(){
         var item = $(this).children("option:selected").attr("value")
         score.push(item)
-        console.log("complete")
+
+        if((score.length == 10) {
+            $(".submit").prop("disabled", false);
+            $(".submit").removeClass("disabled")
+        }
+
     })
 
-    //put scores into the one array then push that array into the friends post
+    $(".submit").prop("disabled", true);
+    
 
     $("#friendForm").submit(function(event){
         var name = $("#friendForm [name=name]").val().trim();
         var pic = $("#friendForm [name=pic]").val().trim();
         var newInput = {name, pic, score}
         
-
         event.preventDefault();
         $.post("/api/friends", newInput, function(response){  
-            console.log(newInput)      
+                 
         }).then(function(){
             $.get("/api/bestfriend", function(data){
-                console.log(data)
+                
                  $("#bfName").text(data[0].name);
                 $("#bfPic").html("<img src='" + data[0].pic + "'>'")
                 $('.modal').modal('show')
