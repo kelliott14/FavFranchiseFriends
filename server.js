@@ -11,11 +11,6 @@ app.use(express.json());
 
 app.use(express.static(__dirname + '/public'));
 
-app.get("/assets/style.css", function(req, res){
-    res.sendFile(__dirname, "./app/public/assets/style.css");
-});
-
-
 app.get("/", function(req, res){
     res.sendFile(path.join(__dirname, "./app/public/home.html"));
 });
@@ -35,4 +30,5 @@ app.post("/api/friends", function (req, res){
     friends.push(newFriend);
 
     res.json(newFriend);
-})
+});
+

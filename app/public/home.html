@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>The FFF</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/public/assets/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/public/assets/style.css"> -->
 </head>
 <body>
     <div class="jumbotron jumbotron-fluid">
@@ -24,10 +24,9 @@
             <div class="form-group">
                 <label for="picInputLabel">Add a photo</label>
                 <input type="input" class="form-control" id="picInput" name="pic" placeholder="Paste a http">
-            </div>
-            <div class="movieQuestions">
-               
-            </div>           
+            </div>      
+            
+            <div class="movieQuestions"></div>
            
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -104,7 +103,7 @@
 
 
     questions.forEach(function(item){
-        div = $("<select></select>");
+        div = $("<select class='scores'></select>");
         var i = questions.indexOf(item) + 1;
         $(div).attr("name", i)
         
@@ -123,22 +122,30 @@
         
     });
 
+    var score = [];
+
+    $(".scores").change(function(){
+        var item = $(this).children("option:selected").attr("value")
+        score.push(item)
+    })
+
     //put scores into the one array then push that array into the friends post
 
     $("#friendForm").submit(function(event){
         var name = $("#friendForm [name=name]").val().trim();
         var pic = $("#friendForm [name=pic]").val().trim();
-        var score = $(".movieQuestions").
+        var data = {name, pic, score}
+        
 
         event.preventDefault();
         $.ajax("/api/friends", {
             method: "POST",
-            data: $("#movie").serialize()            
+            data: data           
         }).then(function(response){
             console.log(response)
         });
     });
 
 </script>
-$("#updateplan [name=plan]").val().trim()
+
 </html>
