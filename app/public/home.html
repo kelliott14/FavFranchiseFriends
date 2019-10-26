@@ -7,6 +7,19 @@
     <title>The FFF</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
+    <style>
+        h3{
+            margin-top: 10px;
+        }
+        button{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        img{
+            width: 100%;
+        }
+    </style>
+    
 </head>
 <body>
     <div class="jumbotron jumbotron-fluid">
@@ -112,7 +125,105 @@
                 name: "Terminator Salvation",
                 img: "./assets/images/terminator4.JPG"
             }
-        ]
+        ],
+        question = [
+            option = {
+                name: "The Hunger Games"
+            },
+            option = {
+                name: "The Hunger Games: Catching Fire"
+            },
+            option = {
+                name: "The Hunger Games: Mockingjay Part 1"
+            },
+            option = {
+                name: "The Hunger Games: Mockingjay Part 2"
+            }
+        ],
+        question = [
+            option = {
+                name: "Transformers"
+            },
+            option = {
+                name: "Transformers: Revenge of the Fallen"
+            },
+            option = {
+                name: "Transformers: Dark of the Moon"
+            },
+            option = {
+                name: "Transformers: Age of Extinction"
+            }
+        ],
+        question = [
+            option = {
+                name: "Mad Max"
+            },
+            option = {
+                name: "Mad Max 2"
+            },
+            option = {
+                name: "Mad Max Beyond Thunderdome"
+            },
+            option = {
+                name: "Mad Max: Fury Road"
+            }
+        ],
+        question = [
+            option = {
+                name: "American Pie"
+            },
+            option = {
+                name: "American Pie 2"
+            },
+            option = {
+                name: "American Wedding"
+            },
+            option = {
+                name: "American Reunion"
+            }
+        ],
+        question = [
+            option = {
+                name: "Alien"
+            },
+            option = {
+                name: "Aliens"
+            },
+            option = {
+                name: "Alien 3"
+            },
+            option = {
+                name: "Alien: Resurrection"
+            }
+        ],
+        question = [
+            option = {
+                name: "Raiders of the Lost Ark"
+            },
+            option = {
+                name: "Indiana Jones and the Temple of Doom"
+            },
+            option = {
+                name: "Indiana Jones and the Last Crusade"
+            },
+            option = {
+                name: "Indiana Jones and the Kingdom of the Crystal Skull"
+            }
+        ],
+        question = [
+            option = {
+                name: "Jaws"
+            },
+            option = {
+                name: "Jaws 2"
+            },
+            option = {
+                name: "Jaws 3D"
+            },
+            option = {
+                name: "Jaws: The Revenge"
+            }
+        ],
     ]
 
     var div;
@@ -121,19 +232,23 @@
 
 
     questions.forEach(function(item){
+        card = $("<div><h3>" + item[0].name + "</h3></div")
         div = $("<select class='scores'></select>");
         var i = questions.indexOf(item) + 1;
         $(div).attr("name", i)
-        
+        var choose = $("<option>Select your favourite</option>")
+        $(div).append(choose)
+
         item.forEach(function(innerItem){
             var score = item.indexOf(innerItem) + 1;
             opt = $("<option>" + innerItem.name + "</option>")
             $(opt).attr("value", score)
             $(div).append(opt);
-            $(div).append(card);
         })
+
+        $(card).append(div)
         
-        $(".movieQuestions").append(div);
+        $(".movieQuestions").append(card);
         
     });
 
@@ -142,6 +257,7 @@
     $(".scores").change(function(){
         var item = $(this).children("option:selected").attr("value")
         score.push(item)
+        console.log("complete")
     })
 
     //put scores into the one array then push that array into the friends post
@@ -149,16 +265,17 @@
     $("#friendForm").submit(function(event){
         var name = $("#friendForm [name=name]").val().trim();
         var pic = $("#friendForm [name=pic]").val().trim();
-        var newFriend = {name, pic, score}
+        var newInput = {name, pic, score}
         
 
         event.preventDefault();
-        $.post("/api/friends", newFriend, function(response){        
+        $.post("/api/friends", newInput, function(response){  
+            console.log(newInput)      
         }).then(function(){
             $.get("/api/bestfriend", function(data){
                 console.log(data)
                  $("#bfName").text(data[0].name);
-                $("#bfPic").html("<img src='" + data[0].photo + "'>'")
+                $("#bfPic").html("<img src='" + data[0].pic + "'>'")
                 $('.modal').modal('show')
             })
         })
