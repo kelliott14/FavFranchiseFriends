@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>The FFF</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" type="text/css" href="/public/assets/style.css">
 </head>
 <body>
     <div class="jumbotron jumbotron-fluid">
@@ -16,27 +16,129 @@
         </div>
     </div>
     <div class="container">
-        <form>
+        <form id="friendForm">
             <div class="form-group">
-                <label for="exampleInputEmail1">Your name</label>
-                <input type="email" class="form-control" id="nameInput" placeholder="Enter name">
+                <label for="nameInputLabel">Your name</label>
+                <input type="input" class="form-control" id="nameInput" name="name" placeholder="Enter name">
             </div>
             <div class="form-group">
                 <label for="picInputLabel">Add a photo</label>
-                <input type="password" class="form-control" id="picInput" placeholder="Paste a http">
+                <input type="input" class="form-control" id="picInput" name="pic" placeholder="Paste a http">
             </div>
             <div class="movieQuestions">
                
-            </div>
-           
+            </div>           
            
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </body>
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-<script src="./assets/home.js"></script>
 
+<!-- <script type="text/javascript" src ="http://localhost:3030/script"></script> -->
+
+<script type="text/javascript">
+    var questions = [
+        question = [
+            option = {
+                name: "Avengers",
+                img: "./assets/images/avengers.JPG"
+                },
+            option = {
+                name: "Avengers: Age of Ultron",
+                img: "./assets/images/avengers2.JPG"
+            },
+            option = {
+                name: "Avengers: Infinity War",
+                img: "./assets/images/avengers3.JPG"
+            },
+            option = {
+                name: "Avengers: Endgame",
+                img: "./assets/images/avengers4.JPG"
+            },
+        ],
+        question = [
+            option = {
+                name: "Die Hard",
+                img: "./assets/images/diehard1.JPG"
+                },
+            option = {
+                name: "Die Hard 2: Die Harder",
+                img: "./assets/images/diehard2.JPG"
+            },
+            option = {
+                name: "Die Hard: With a Vengeance",
+                img: "./assets/images/diehard3.JPG"
+            },
+            option = {
+                name: "Die Hard 4.0",
+                img: "./assets/images/diehard4.JPG"
+            }
+        ],
+        question = [
+            option = {
+                name: "Terminator",
+                img: "./assets/images/terminator1.JPG"
+                },
+            option = {
+                name: "Terminator 2: Judgement Day",
+                img: "./assets/images/terminator2.JPG"
+            },
+            option = {
+                name: "Terminator 3: Rise of the Machines",
+                img: "./assets/images/terminator3.JPG"
+            },
+            option = {
+                name: "Terminator Salvation",
+                img: "./assets/images/terminator4.JPG"
+            }
+        ]
+    ]
+
+    var div;
+    var card;
+    var img;
+
+
+    questions.forEach(function(item){
+        div = $("<select></select>");
+        var i = questions.indexOf(item) + 1;
+        $(div).attr("name", i)
+        
+        item.forEach(function(innerItem){
+            var score = item.indexOf(innerItem) + 1;
+            //card = $("<div class='card'></select>")
+            // img = $("<img class='card-img-top img-thumbnail' src = " + innerItem.img + " >");
+            img = $("<option>" + innerItem.name + "</option>")
+            $(img).attr("value", score)
+            // $(img).attr("name", score)
+            $(div).append(img);
+            $(div).append(card);
+        })
+        
+        $(".movieQuestions").append(div);
+        
+    });
+
+    //put scores into the one array then push that array into the friends post
+
+    $("#friendForm").submit(function(event){
+        var name = $("#friendForm [name=name]").val().trim();
+        var pic = $("#friendForm [name=pic]").val().trim();
+        var score = $(".movieQuestions").
+
+        event.preventDefault();
+        $.ajax("/api/friends", {
+            method: "POST",
+            data: $("#movie").serialize()            
+        }).then(function(response){
+            console.log(response)
+        });
+    });
+
+</script>
+$("#updateplan [name=plan]").val().trim()
 </html>

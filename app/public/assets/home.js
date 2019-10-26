@@ -66,7 +66,8 @@ questions.forEach(function(item){
     item.forEach(function(innerItem){
         var score = item.indexOf(innerItem) + 1;
         card = $("<div class='card'></div>")
-        img = $("<img class='card-img-top img-thumbnail' src = " + innerItem.img + " >");
+        // img = $("<img class='card-img-top img-thumbnail' src = " + innerItem.img + " >");
+        img = $("<p>" + innerItem.name + "</p>")
         $(img).attr("score", score)
         $(card).append(img);
         $(div).append(card);
