@@ -149,24 +149,24 @@
     $("#friendForm").submit(function(event){
         var name = $("#friendForm [name=name]").val().trim();
         var pic = $("#friendForm [name=pic]").val().trim();
-        var data = {name, pic, score}
+        var newFriend = {name, pic, score}
         
 
         event.preventDefault();
-        $.ajax("/api/friends", {
-            method: "POST",
-            data: data           
-        }).then(function(response){
-            console.log(response)
-
-            $.ajax("/api/bestfriend", {
-                method: "GET"
-            }).then(function(data){
-                $("#bfName").text(data.name);
-                $("#bfPic").html("<img src='" + data.photo + "'>'")
+        $.post("/api/friends", newFriend, function(response){        
+        }).then(function(){
+            $.get("/api/bestfriend", function(data){
+                console.log(data)
+                 $("#bfName").text(data[0].name);
+                $("#bfPic").html("<img src='" + data[0].photo + "'>'")
                 $('.modal').modal('show')
             })
-        });
+        })
+
+      
+            
+           
+       
 
 
         
